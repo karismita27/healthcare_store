@@ -1,0 +1,50 @@
+.topbar{
+  background: var(--yellow);
+  color: var(--text);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid rgba(17,24,39,0.08);
+}
+.topbar__inner{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 3px 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.topbar__slider{
+  width: 100%;
+  max-width: 520px; /* adjust if you want wider */
+  overflow: hidden;
+}
+.topbar__track{
+  display: flex;
+  transition: transform 0.45s ease;
+  will-change: transform;
+}
+.topbar__slide{
+  min-width: 100%;
+  text-align: center;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 2px 0;
+}
+.topbar__dots{
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+.dot{
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(17,24,39,0.25);
+  cursor: pointer;
+}
+.dot--active{
+  background: rgba(17,24,39,0.85);
+}
