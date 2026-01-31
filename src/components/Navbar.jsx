@@ -26,19 +26,15 @@ function IconUser({ className = "" }) {
 
 export default function Navbar() {
   const location = useLocation();
-  const params = new
-  URLSearchParams(location.search);
-  const selectedCategory = params.get("category");
+  const params = new URLSearchParams(location.search);
+  const selectedCategory = params.get("category"); // category param (used by Products page)
   const navigate = useNavigate();
+
   const { count } = useCart();
   const { auth, logout } = useAuth();
 
   const isUser = auth.status === "user";
-
-  const displayName = useMemo(() => {
-    if (isUser) return auth.user?.name || "User";
-    return null;
-  }, [auth, isUser]);
+  const displayName = useMemo(() => (isUser ? auth.user?.name || "User" : null), [auth, isUser]);
 
   const [q, setQ] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -56,11 +52,13 @@ export default function Navbar() {
     const query = q.trim();
     navigate(`/products${query ? `?q=${encodeURIComponent(query)}` : ""}`);
     setMobileOpen(false);
+    setCatOpen(false);
   }
 
   function openCart() {
     navigate("/cart");
     setMobileOpen(false);
+    setCatOpen(false);
   }
 
   function onUserIconClick() {
@@ -75,14 +73,23 @@ export default function Navbar() {
   function go(path) {
     setUserOpen(false);
     setMobileOpen(false);
+    setCatOpen(false);
     navigate(path);
   }
 
   function onLogout() {
     setUserOpen(false);
     setMobileOpen(false);
+    setCatOpen(false);
     logout();
     navigate("/", { replace: true });
+  }
+
+  // IMPORTANT: consistent category param
+  function onCategoryPick(cat) {
+    navigate(`/products?category=${encodeURIComponent(cat)}`);
+    setCatOpen(false);
+    setMobileOpen(false);
   }
 
   // Close dropdowns on outside click
@@ -95,7 +102,7 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", onDocClick);
   }, []);
 
-  // Close mobile drawer if resizing to desktop (optional but clean)
+  // Close mobile drawer if resizing to desktop
   useEffect(() => {
     function onResize() {
       if (window.innerWidth > 820) {
@@ -107,34 +114,32 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  function onCategoryPick(cat) {
-    // Adjust route if your app uses different category routing
-    navigate(`/products?cat=${encodeURIComponent(cat)}`);
-    setCatOpen(false);
-    setMobileOpen(false);
-  }
-
   return (
     <header className="nav">
       <div className="nav__inner container">
-        <div className="nav__row">
-          <Link to="/home" className="nav__logo" aria-label="Home" onClick={() => setMobileOpen(false)}>
-            <span className="logoMark" aria-hidden="true">V</span>
-          </Link>
+        {/* ===== TOP AREA (two-row layout on mobile via CSS) ===== */}
+        <div className="nav__top">
+          {/* Row 1 */}
+          <div className="nav__row">
+            {/* Hamburger (mobile only via CSS) */}
+            <button
+              className="nav__hamburger"
+              type="button"
+              aria-label="Menu"
+              aria-expanded={mobileOpen}
+              aria-controls="nav-mobile-menu"
+              onClick={() => setMobileOpen((v) => !v)}
+            >
+              ☰
+            </button>
 
-          {/* Hamburger (mobile only via CSS) */}
-          <button
-            className="nav__hamburger"
-            type="button"
-            aria-label="Menu"
-            aria-expanded={mobileOpen}
-            aria-controls="nav-mobile-menu"
-            onClick={() => setMobileOpen((v) => !v)}
-          >
-            {"\u2630"}
-          </button>
-
-          {/* Search (visible on both desktop + mobile now) */}
+            {/* Logo */}
+            <Link to="/home" className="nav__logo" aria-label="Home" onClick={() => setMobileOpen(false)}>
+              <span className="logoMark" aria-hidden="true">
+                V
+              </span>
+            </Link>
+             {/* Row 2: Search (full width on mobile via CSS) */}
           <form className="nav__search" onSubmit={onSearchSubmit}>
             <input
               value={q}
@@ -144,76 +149,88 @@ export default function Navbar() {
             />
             <button type="submit" className="nav__searchBtn" aria-label="Search">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" strokeWidth="1.8" />
-                <path d="M16.4 16.4 21 21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                <path
+                  d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                />
+                <path
+                  d="M16.4 16.4 21 21"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
           </form>
 
-          <div className="nav__actions">
-            {/* Desktop-only supplier button */}
+            {/* Supplier (desktop version in actions, mobile version here) */}
+            <div className="nav__centerSlot">
             <button
-              className="btn btn--pill btn--yellow nav__supplierDesktop"
+              className="btn btn--pill btn--yellow nav__supplierMobileTop"
               type="button"
               onClick={() => navigate("/become-supplier")}
             >
               Become a Supplier
             </button>
+            </div>
+            
 
-            <button className="iconBtn" type="button" onClick={openCart} aria-label="Cart">
-              <IconCart />
-              {count > 0 && <span className="badge">{count}</span>}
-            </button>
-
-            <div className="nav__user" ref={userRef}>
+            {/* Right actions */}
+            <div className="nav__actions">
+              {/* Desktop-only supplier button */}
               <button
-                className="iconBtn"
+                className="btn btn--pill btn--yellow nav__supplierDesktop"
                 type="button"
-                onClick={onUserIconClick}
-                aria-label="Account"
-                aria-expanded={isUser ? userOpen : undefined}
+                onClick={() => navigate("/become-supplier")}
               >
-                <IconUser />
+                Become a Supplier
               </button>
 
-              <div className="nav__userMeta">
-                {isUser && <div className="nav__userName">{displayName}</div>}
-              </div>
+              <button className="iconBtn" type="button" onClick={openCart} aria-label="Cart">
+                <IconCart />
+                {count > 0 && <span className="badge">{count}</span>}
+              </button>
 
-              {isUser && userOpen && (
-                <div className="userDrop" role="menu" aria-label="Account menu">
-                  <button className="userDrop__item" type="button" onClick={() => go("/account")}>My Account</button>
-                  <button className="userDrop__item" type="button" onClick={() => go("/addresses")}>Addresses</button>
-                  <button className="userDrop__item" type="button" onClick={() => go("/orders")}>Orders</button>
-                  <button className="userDrop__item" type="button" onClick={() => go("/returns")}>Returns</button>
-                  <button className="userDrop__item" type="button" onClick={() => go("/support")}>Support</button>
-                  <div className="userDrop__divider" aria-hidden="true" />
-                  <button className="userDrop__item userDrop__item--danger" type="button" onClick={onLogout}>Logout</button>
-                </div>
-              )}
+              <div className="nav__user" ref={userRef}>
+                <button className="iconBtn" type="button" onClick={onUserIconClick} aria-label="Account">
+                  <IconUser />
+                </button>
+
+                <div className="nav__userMeta">{isUser && <div className="nav__userName">{displayName}</div>}</div>
+
+                {isUser && userOpen && (
+                  <div className="userDrop" role="menu" aria-label="Account menu">
+                    <button className="userDrop__item" type="button" onClick={() => go("/account")}>
+                      My Account
+                    </button>
+                    <button className="userDrop__item" type="button" onClick={() => go("/addresses")}>
+                      Addresses
+                    </button>
+                    <button className="userDrop__item" type="button" onClick={() => go("/orders")}>
+                      Orders
+                    </button>
+                    <button className="userDrop__item" type="button" onClick={() => go("/returns")}>
+                      Returns
+                    </button>
+                    <button className="userDrop__item" type="button" onClick={() => go("/support")}>
+                      Support
+                    </button>
+                    <div className="userDrop__divider" aria-hidden="true" />
+                    <button className="userDrop__item userDrop__item--danger" type="button" onClick={onLogout}>
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
+
+         
         </div>
 
-        {/* Drawer / Links */}
-        <div
-          id="nav-mobile-menu"
-          className={`nav__links ${mobileOpen ? "nav__links--open" : ""}`}
-        >
-          {/* Mobile-only supplier button inside hamburger */}
-          {mobileOpen &&(
-          <button
-            className="btn btn--pill btn--yellow nav__supplierMobile"
-            type="button"
-            onClick={() => {
-              setMobileOpen(false);
-              navigate("/become-supplier");
-            }}
-          >
-            Become a Supplier
-          </button>
-          )}
-
+        {/* ===== LINKS / DRAWER ===== */}
+        <div id="nav-mobile-menu" className={`nav__links ${mobileOpen ? "nav__links--open" : ""}`}>
           <Link to="/#most-popular" className="navLink" onClick={() => setMobileOpen(false)}>
             Popular
           </Link>
@@ -233,7 +250,7 @@ export default function Navbar() {
                 {CATEGORIES.map((cat) => (
                   <button
                     key={cat}
-                    className="navDrop__item"
+                    className={`navDrop__item ${selectedCategory === cat ? "navDrop__item--active" : ""}`}
                     type="button"
                     onClick={() => onCategoryPick(cat)}
                   >
@@ -247,15 +264,12 @@ export default function Navbar() {
           <NavLink to="/bulk-orders" className="navLink" onClick={() => setMobileOpen(false)}>
             Bulk Orders
           </NavLink>
-
           <NavLink to="/quality" className="navLink" onClick={() => setMobileOpen(false)}>
             Quality
           </NavLink>
-
           <NavLink to="/support" className="navLink" onClick={() => setMobileOpen(false)}>
             Support
           </NavLink>
-
           <NavLink to="/about" className="navLink" onClick={() => setMobileOpen(false)}>
             About Us
           </NavLink>

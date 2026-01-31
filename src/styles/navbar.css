@@ -15,9 +15,16 @@
 .nav__inner{
   position: static;
   padding-top: 3px;
-  padding-bottom: 0;
+  padding-bottom: 10px;
   max-width: 1320px;
   margin: 0 auto;
+}
+
+/* NEW wrapper for top area */
+.nav__top{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .nav__row{
@@ -27,6 +34,7 @@
   gap: 14px;
 }
 
+/* logo */
 .nav__logo{
   display: flex;
   align-items: center;
@@ -46,11 +54,7 @@
   margin-left: 20px;
 }
 
-.logoText{
-  font-weight: 800;
-  letter-spacing: -0.2px;
-}
-
+/* search (desktop: centered) */
 .nav__search{
   width: 100%;
   max-width: 540px;
@@ -101,12 +105,15 @@
   display: flex;
   align-items: center;
 }
+.nav__centerSlot{
+  display: none;
+}
 
 /* Desktop Supplier visible */
 .nav__supplierDesktop{ display: flex; }
 
-/* Mobile Supplier hidden by default */
-.nav__supplierMobile{ display: none; }
+/* Mobile Supplier (top row) hidden by default */
+.nav__supplierMobileTop{ display: none; }
 
 .iconBtn{
   position: relative;
@@ -210,6 +217,7 @@
 }
 
 .navDrop__item:hover{ background: rgba(17,24,39,0.05); }
+.navDrop__item--active{ background: rgba(244,197,66,0.28); }
 
 /* User dropdown */
 .userDrop{
@@ -267,54 +275,63 @@
    ========================= */
 @media (max-width: 820px){
 
-  .nav{ top: 33px; padding-bottom: 6px; }
-  .nav__inner{ padding: 6px 10px; }
+  .nav{ top: 33px; }
+  .nav__inner{ padding: 8px 10px 12px; }
 
-  /* Make the top row: Logo + Search + Icons + Hamburger */
+  /* Row 1: hamburger | logo | supplier | right icons */
   .nav__row{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 8px;
   }
 
-  .logoMark{ margin-left: 0; }
-  .nav__logo{ min-width: unset; flex: 0 0 auto; }
-
-  /* show hamburger on mobile */
   .nav__hamburger{
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 auto;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    font-size: 22px;
+    padding: 6px;
+    order: 1;
   }
 
-  /* search visible on mobile */
-  .nav__search{
+  .logoMark{ margin-left: 0; }
+  .nav__logo{ min-width: unset; flex: 0 0 auto; order: 2; }
+  .nav__centerSlot{ display: flex; flex: 1 1 auto; justify-content: center; order: 3;}
+
+  /* mobile supplier in the center */
+  .nav__supplierMobileTop{
     display: flex;
-    flex: 1 1 auto;
-    min-width: 0;
+    padding: 7px 10px;
+    height: 34px;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .nav__actions{ flex: 0 0 auto; gap: 6px; order: 4;}
+
+  /* hide desktop supplier button in actions */
+  .nav__supplierDesktop{ display: none; }
+
+  /* hide name meta */
+  .nav__userMeta{ display: none; }
+
+  /* Row 2: Search full width */
+  .nav__search{
+    flex: 0 0 100%;;
     max-width: none;
     margin-left: 0;
+    order: 5;
   }
 
   .nav__search input{
-    min-width: 0;
     font-size: 13px;
   }
 
-  /* right actions compact */
-  .nav__actions{
-    gap: 6px;
-    flex: 0 0 auto;
-  }
-
-  /* hide desktop supplier in top bar */
-  .nav__supplierDesktop{ display: none; }
-
-  /* hide name meta to save space */
-  .nav__userMeta{ display: none; }
-
-  /* links row becomes hamburger drawer */
+  /* Drawer menu (below search) */
   .nav__links{
     display: none;
     flex-direction: column;
@@ -322,16 +339,14 @@
     padding: 12px 12px 14px;
     margin: 10px 0 0 0;
     background: #fff;
-    border-top: 1px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: 14px;
   }
 
-  /* FIXED: menu open selector */
   .nav__links.nav__links--open{
     display: flex;
   }
 
-  /* Make links full width tappable */
   .navLink{
     width: 100%;
     text-align: left;
@@ -339,25 +354,12 @@
     border-radius: 12px;
   }
 
-  /* Mobile supplier inside drawer */
-  .nav__supplierMobile{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-  }
-
-  /* Category dropdown should behave like inline accordion on mobile */
+  /* Categories menu as accordion */
   .navDrop__menu{
     position: static;
-    top: auto;
-    left: auto;
     min-width: 100%;
     border-radius: 12px;
     box-shadow: none;
     margin-top: 6px;
   }
-}
-.userDrop__item--danger{color:#7f1d1d}
-.userDrop__item--danger:hover{background: rgba(185,28,28,0.08)}
-.nav__hamburger{ display: none; border:none; font-size: 22px; background: transparent; padding: 6px; cursor: pointer;
 }
