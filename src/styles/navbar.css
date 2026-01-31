@@ -156,14 +156,14 @@
   .nav__search{display: none;}
   .btn.btn--pill.btn--yellow{ width: 100%; justify-content: center; order: 3; margin-top: 6;}
   .nav__actions{ flex: 0 0 auto; gap: 6px}
-  .nav__hamburger{ display: flex;}
+  .nav__hamburger{ display: flex; align-items: center; justify-content: center;}
   .nav__links{display: none;}
-  .nav__links.nav__links--open{
+  .nav__links--open{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 14px;
-    padding: 14px 0;
+    padding: 12px 0;
     width: 100%;
     background: var(--card);
     border-top: 1px solid var(--border);
@@ -208,5 +208,5 @@
 }
 .userDrop__item--danger{color:#7f1d1d}
 .userDrop__item--danger:hover{background: rgba(185,28,28,0.08)}
-.nav__hamburger{ display: none; border: 1px solid var(--border); background: #fff; border-radius: 12px; padding: 10px; cursor: pointer;
+.nav__hamburger{ display: none; border:none; font-size: 22px; background: transparent; padding: 6px; cursor: pointer;
 }
