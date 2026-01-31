@@ -31,6 +31,8 @@ export default function Navbar() {
   const [q, setQ] = useState("");
   const [catOpen, setCatOpen] = useState(false);
 
+  const[mobileOpen, setMobileOpen] = useState(false);
+
   const isUser = auth.status === "user";
 
   const displayName = useMemo(() => {
@@ -88,6 +90,15 @@ export default function Navbar() {
           <Link to="/home" className="nav__logo" aria-label="Home">
             <span className="logoMark" aria-hidden="true">V</span>
           </Link>
+          
+<button
+  className="iconBtn nav__hamburger"
+  type="button"
+  aria-label="Menu"
+  onClick={() => setMobileOpen(v => !v)}
+>
+  ☰
+</button>
 
           <form className="nav__search" onSubmit={onSearchSubmit}>
             <input

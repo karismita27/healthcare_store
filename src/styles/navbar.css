@@ -153,8 +153,20 @@
   .nav{top: 33px}
   .nav__row{flex-wrap: wrap}
   .nav__logo{min-width:auto}
-  .nav__search{order:3; width:100%}
+  .nav__search{max-width: none; order:2; width:100%; margin-top: 6px;}
+  .btn.btn--pill.btn--yellow{ width: 100%; justify-content: center; order: 3; margin-top: 6;}
+  .nav__actions{ order: 1; gap: 8px}
+  .nav__hamburger{ display: flex;}
+  .nav__links{display: none;}
+  .nav__links.nav__links--open{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+  }
 }
+
 
 
 /* User dropdown (only for logged-in users) */
@@ -190,3 +202,4 @@
 }
 .userDrop__item--danger{color:#7f1d1d}
 .userDrop__item--danger:hover{background: rgba(185,28,28,0.08)}
+.nav__hamburger{ display: none;}
