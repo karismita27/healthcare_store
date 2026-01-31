@@ -160,46 +160,38 @@ export default function Navbar() {
           </div>
         </div>
 
-        <nav className="nav__links" aria-label="Primary">
-          <Link to="/#most-popular" className="navLink">Popular</Link>
+       
+<div className={`nav__links ${mobileOpen ? "nav__links--open" : ""}`}>
+  <Link to="/#most-popular" className="navLink" onClick={() => setMobileOpen(false)}>
+    Popular
+  </Link>
 
-          <div
-            className="navDrop"
-            onMouseLeave={() => setCatOpen(false)}
-          >
-            <button
-              type="button"
-              className="navLink navDrop__btn"
-              onClick={() => setCatOpen((v) => !v)}
-              aria-expanded={catOpen}
-            >
-              Categories <span className="caret" aria-hidden="true">▼</span>
-            </button>
+  <div className="navDrop">
+    <button
+      type="button"
+      className="navLink navDrop__btn"
+      onClick={() => setCatOpen(v => !v)}
+    >
+      Categories <span className="caret">▼</span>
+    </button>
+  </div>
 
-            {catOpen && (
-              <div className="navDrop__menu">
-                {CATEGORIES.map((c) => (
-                  <button
-                    key={c}
-                    className="navDrop__item"
-                    type="button"
-                    onClick={() => {
-                      setCatOpen(false);
-                      navigate(`/products?category=${encodeURIComponent(c)}`);
-                    }}
-                  >
-                    {c}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+  <NavLink to="/bulk-orders" className="navLink" onClick={() => setMobileOpen(false)}>
+    Bulk Orders
+  </NavLink>
 
-          <NavLink to="/bulk-orders" className="navLink">Bulk Orders</NavLink>
-          <NavLink to="/quality" className="navLink">Quality</NavLink>
-          <NavLink to="/support" className="navLink">Support</NavLink>
-          <NavLink to="/about" className="navLink">About Us</NavLink>
-        </nav>
+  <NavLink to="/quality" className="navLink" onClick={() => setMobileOpen(false)}>
+    Quality
+  </NavLink>
+
+  <NavLink to="/support" className="navLink" onClick={() => setMobileOpen(false)}>
+    Support
+  </NavLink>
+
+  <NavLink to="/about" className="navLink" onClick={() => setMobileOpen(false)}>
+    About Us
+  </NavLink>
+</div>
       </div>
     </header>
   );
