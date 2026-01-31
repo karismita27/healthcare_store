@@ -1,9 +1,8 @@
 .nav{
-  background: var(--card);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 33px;
-  z-index: 40;
+ position: sticky;
+ top: 0;
+ z-index: 10000;
+ background: white;
 }
 .nav__inner{padding-top: 3px; padding-bottom: 0; max-width: 1320px; margin: 0 auto;}
 .nav__row{
@@ -153,12 +152,12 @@
   .nav{top: 33px; padding-bottom: 6px;}
   .nav__row{flex-wrap: nowrap; gap: 8px; display: flex; align-items: center; justify-content: space-between;}
   .nav__logo{flex: 0 0 auto;}
-  .nav__search{display: none;}
+  .nav__search{display: block; width: 100%; order: 3s;}
   .btn.btn--pill.btn--yellow{ width: 100%; justify-content: center; order: 3; margin-top: 6;}
   .nav__actions{ flex: 0 0 auto; gap: 6px}
   .nav__hamburger{ display: flex; align-items: center; justify-content: center;}
   .nav__links{display: none;}
-  .nav__links--open{
+  .nav___links.nav__links--open{
     display: flex;
     flex-direction: column;
     align-items: center;

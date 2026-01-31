@@ -13,6 +13,7 @@
   background-repeat: no-repeat;
   position: absolute; 
   inset: 0;
+  z-index: 0;
 }
 .hero__content{position: relative; max-width: 640px; padding: 48px 24px; z-index: 1;}
 .hero__title{margin:0; font-size: 40px; letter-spacing:-0.6px; margin-top: 90px; width: 550px; font-weight:700;}
