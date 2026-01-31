@@ -35,7 +35,7 @@ For any assistance related to orders, shipping, payments, invoices, or product i
 
       <div className="supportImage card">
         <img
-          src="images/support3.jpg"
+          src="images/s10.png"
           alt="Support"
         />
       </div>

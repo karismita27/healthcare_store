@@ -7,7 +7,7 @@
 
 }
 .hero__bg{
-  background-image: url("/images/3.jpg");
+  background-image: url("/images/banner1.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -565,13 +565,16 @@
    ========================= */
 .aboutHero{
   padding: 18px;
+  padding-top: 24px;
+  padding-bottom: 28px;
   display:flex;
   justify-content:space-between;
   align-items:flex-start;
   gap: 12px;
   flex-wrap: wrap;
+  text-align: justify;
 }
-.aboutHero__right{display:flex; gap: 10px; flex-wrap: wrap}
+.aboutHero__right{display:flex; gap: 10px; flex-wrap: wrap;}
 .aboutIntro{
   padding: 18px;
   display:grid;
@@ -716,4 +719,29 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.4px;
+}
+
+
+@media (max-width: 768px) {
+  .statRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+
+  .miniStat {
+    min-width: 0;
+    padding: 8px 4px;
+  }
+
+  .miniStat_value {
+    font-size: 13px;
+  }
+
+  .miniStat_label {
+    font-size: 10px;
+    line-height: 1.2;
+    white-space: normal;
+  }
 }

@@ -35,7 +35,7 @@ export default function Navbar() {
 
   const displayName = useMemo(() => {
     if (isUser) return auth.user?.name || "User";
-    return "Sign in";
+    return null;
   }, [auth, isUser]);
 
   function onSearchSubmit(e) {
@@ -130,12 +130,8 @@ export default function Navbar() {
               </button>
 
               <div className="nav__userMeta">
-                <div className="nav__userName">{displayName}</div>
-                {!isUser && (
-                  <button className="linkBtn" type="button" onClick={() => navigate("/auth")}>
-                    Login / Register
-                  </button>
-                )}
+                {isUser &&(
+                <div className="nav__userName">{displayName}</div>)}
               </div>
 
               {isUser && userOpen && (

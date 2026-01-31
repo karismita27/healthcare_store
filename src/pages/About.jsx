@@ -10,8 +10,9 @@ export default function About() {
         <div className="aboutHero__left">
           <h1 className="pageTitle">About Us</h1>
           <p className="muted">
-            We help people and clinics find reliable healthcare products online — with quality checks, fair pricing,
-            and fast delivery across India.
+           
+We are a healthcare-focused e-commerce platform dedicated to providing high-quality, trusted healthcare products that support everyday health and well-being. Our goal is to make essential healthcare items easily accessible by offering a carefully curated selection from reliable and verified sources. We prioritize quality, authenticity, and affordability so our customers can shop with confidence and peace of mind.
+Customer satisfaction is at the heart of everything we do. From simple navigation and secure payments to timely delivery and responsive support, we strive to create a smooth and dependable shopping experience. By focusing on transparency, reliability, and care, we aim to become a trusted destination for healthcare needs and a partner in maintaining a healthier lifestyle.
           </p>
         </div>
 
