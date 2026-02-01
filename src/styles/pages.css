@@ -750,7 +750,7 @@
   .hero {
     min-height: auto;
     padding-top:60px;   /* space for fixed navbar */
-    padding-bottom: 12px;
+    padding-bottom: 50px;
   }
 
   .hero_content {
