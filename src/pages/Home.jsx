@@ -179,7 +179,7 @@ export default function Home() {
 
         <div className="flex sm:grid gap-4 pb-4 overflow-x-auto sm:overflow-visible sm:grid-cols-2 lg:grid-cols-4">
           {promises.map((p) => (
-            <div key={p.title} className="min-w-[26px] sm:min-w-0 flex flex-col items-center text-center bg-white border border-gray-200 rounded-xl p-4 shadow-sm w-48 h-36">
+            <div key={p.title} className="min-w-[260px] sm:min-w-0 flex flex-col items-center text-center bg-white border border-gray-200 rounded-xl p-4 shadow-sm w-48 h-36">
               <div className="w-10 h-10 bg-yellow-200 text-yellow-700 rounded-lg flex items-center justify-center text-sm">
                 <PromiseIcon type = {p.type} />
               </div>
