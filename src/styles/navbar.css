@@ -361,7 +361,7 @@
     margin-top: 6px;
   }
   .btn.btn--pill.btn--yellow.nav__supplierDesktop{display: none;}
-  .btn.btn--pill.btn--yellow.nav__supplierMobileTop{display: inline-flex; margin-right: 50px;}
+  .btn.btn--pill.btn--yellow.nav__supplierMobileTop{display: inline-flex; margin-right: 500px;}
 }
 
 .btn.btn--pill.btn--yellow.nav__supplierDesktop{ display: inline-flex;}
