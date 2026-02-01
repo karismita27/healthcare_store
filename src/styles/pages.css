@@ -1,10 +1,8 @@
 .hero{
-  
-  overflow:hidden;
   padding: 0;
   border-radius: 0;
-  height: 468px;
-  min-height: calc(468px-13px);
+  min-height: 468px;
+  height: auto;
 
 }
 .hero__bg{
@@ -745,5 +743,32 @@
     font-size: 10px;
     line-height: 1.2;
     white-space: normal;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-top: 96px;   /* space for fixed navbar */
+    padding-bottom: 24px;
+  }
+
+  .hero_content {
+    padding: 24px 16px;
+    max-width: 100%;
+  }
+
+  .hero_title {
+    font-size: 26px;
+    line-height: 1.25;
+  }
+
+  .hero_sub {
+    font-size: 14px;
+  }
+
+  .hero_actions {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
