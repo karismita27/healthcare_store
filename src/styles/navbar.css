@@ -362,5 +362,9 @@
     box-shadow: none;
     margin-top: 6px;
   }
+  .btn.btn--pill.btn--yellow.nav__supplierDesktop{display: none;}
+  .btn.btn--pill.btn--yellow.nav__supplierMobileTop{display: inline-flex;}
 }
 
+.btn.btn--pill.btn--yellow.nav__supplierDesktop{ display: inline-flex;}
+.btn.btn--pill.btn--yellow.nav__supplierMobileTop{ display: none;}
