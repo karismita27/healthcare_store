@@ -110,10 +110,10 @@
 }
 
 /* Desktop Supplier visible */
-.nav__supplierDesktop{ display: flex; }
+/*.nav__supplierDesktop{ display: flex; }*/
 
 /* Mobile Supplier (top row) hidden by default */
-.nav__supplierMobileTop{ display: none; }
+/*.nav__supplierMobileTop{ display: none; }*/
 
 .iconBtn{
   position: relative;
@@ -304,7 +304,7 @@
 
   /* mobile supplier in the center */
   .nav__supplierMobileTop{
-    display: none;
+    display: flex;
     padding: 7px 10px;
     height: 34px;
     font-size: 13px;
