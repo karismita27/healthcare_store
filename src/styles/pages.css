@@ -771,4 +771,11 @@
     flex-direction: column;
     align-items: flex-start;
   }
+  .hero__title{
+    font-size: 26px ;
+    line-height: 1.25;
+    max-width: 90%;
+    word-wrap: break-word;
+    text-align: left;
+  }
 }
