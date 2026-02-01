@@ -1,6 +1,45 @@
 import React from "react";
 import Accordion from "../components/Accordion.jsx";
 
+
+const DocIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
+    <path d="M7 3h7l5 5v13a1 1 0 01-1 1H7a1 1 0 01-1-1V4a1 1 0 011-1z" />
+    <path d="M14 3v5h5" />
+  </svg>
+);
+
+const SearchIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
+    <circle cx="11" cy="11" r="7" />
+    <path d="M21 21l-4.35-4.35" />
+  </svg>
+);
+
+
+const BoxIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="w-6 h-6"
+  >
+    <path d="M3 7l9 5 9-5" />
+    <path d="M3 7l9-4 9 4" />
+    <path d="M12 22V12" />
+    <path d="M21 7v10l-9 5-9-5V7" />
+  </svg>
+);
+
+const ShieldIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
+    <path d="M12 3l8 4v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V7l8-4z" />
+  </svg>
+);
+
 export default function Quality() {
   const faqs = [
     {
@@ -93,22 +132,22 @@ export default function Quality() {
             {
               title: "Verified Documentation",
               text: "We verify certifications, invoices, and supplier documents before listing products.",
-              icon: "📄",
+              icon: <DocIcon />,
             },
             {
               title: "Seller Screening",
               text: "Suppliers are checked for authenticity, compliance, and service reliability.",
-              icon: "🔎",
+              icon: <SearchIcon />,
             },
             {
               title: "Safe Packaging",
               text: "Careful packaging standards reduce damage and maintain product integrity.",
-              icon: "📦",
+              icon: <BoxIcon />,
             },
             {
               title: "Support & Warranty",
               text: "Clear return policy and warranty support for eligible healthcare products.",
-              icon: "🛡️",
+              icon: <ShieldIcon />,
             },
           ].map((c) => (
             <div key={c.title} className="card promiseTile">

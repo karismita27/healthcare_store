@@ -495,15 +495,14 @@
 
 .promiseTile{padding: 14px}
 .promiseTile__icon{
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  background: #fde68a;
-  display: flex;
-  align-items: center;
-  justify-content: center;font-size: 22px;
-  color: #92400e;
-  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  background: rgba(244,197,66,0.5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 21px;
 }
 .promiseTile__title{margin-top: 10px; font-weight: 550}
 .promiseTile__text{margin-top: 6px; font-size: 13px; font-weight: 450; line-height:1.45}
@@ -775,4 +774,21 @@
     align-items: flex-start;
   }
   
+}
+
+@media(max-width: 767px){
+  .supportIntro{
+    height: auto;
+    overflow: visible;
+    padding: 12px;
+  }
+  .supportImage{
+    width: 100%;
+    height: 160px;
+  }
+  .supportImage img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }
