@@ -754,8 +754,7 @@
   }
 
   .hero_content {
-    padding: 4px 6px;
-    max-width: 100%;
+    transform: translateY(-20px);
   }
 
   .hero__title{
