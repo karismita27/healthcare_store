@@ -4,15 +4,75 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import { PRODUCTS } from "../data/products.js";
 
+
+const PromiseIcon = ({ type }) => {
+  
+if (type === "shipping") {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M8.25 18.75a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM18.75 18.75a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM3 6.75h11.25v8.25H3V6.75zm11.25 3h4.125L21 12.375v2.625h-2.25"
+      />
+    </svg>
+  );
+}
+  if (type === "quality") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg"
+        fill="none" viewBox="0 0 24 24"
+        strokeWidth="1.5" stroke="currentColor"
+        className="w-10 h-10">
+        <path strokeLinecap="round" strokeLinejoin="round"
+          d="M9 12l2 2 4-4" />
+      </svg>
+    );
+  }
+
+  if (type === "returns") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg"
+        fill="none" viewBox="0 0 24 14"
+        strokeWidth="1.5" stroke="currentColor"
+        className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round"
+          d="M4 7h16M4 7l4-4M4 7l4 4" />
+      </svg>
+    );
+  }
+
+  if (type === "support") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg"
+        fill="none" viewBox="0 0 24 24"
+        strokeWidth="1.5" stroke="currentColor"
+        className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round"
+          d="M21 15a4 4 0 01-4 4H7l-4 4V7a4 4 0 014-4h10a4 4 0 014 4z" />
+      </svg>
+    );
+  }
+
+  return null;
+};
+
 export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
 
   const promises = [
-    { title: "Free Shipping", sub: "Fast & reliable delivery", icon: "🚚" },
-    { title: "Quality Checked", sub: "Certified products", icon: "✅" },
-    { title: "Easy Returns", sub: "Hassle-free replacement", icon: "🔄" },
-    { title: "Support", sub: "We’re here to help", icon: "📞" },
+    { title: "Free Shipping", sub: "Fast & reliable delivery",type: "shipping" },
+    { title: "Quality Checked", sub: "Certified products",type: "quality" },
+    { title: "Easy Returns", sub: "Hassle-free replacement",type: "returns" },
+    { title: "Support", sub: "We’re here to help", type: "support"},
   ];
 
   const stats = [
@@ -113,18 +173,23 @@ export default function Home() {
       </section>
 
       {/* PROMISES */}
-      <section className="section">
-        <h2 className="section__title homeCenterTitle">Our Promises</h2>
-        <div className="promiseRow">
+      <section className="py-8">
+      <div className="max-w-6xl mx-auto px-4">
+        <h2 className="text-center font-semibold text-xl mb-6">Our Promises</h2>
+
+        <div className="grid grid-cols-4 gap-4 place-items-center">
           {promises.map((p) => (
-            <div key={p.title} className="promiseCard">
-              <div className="promiseIcon" aria-hidden="true">
-                {p.icon}
+            <div key={p.title} className="flex flex-col items-center text-center bg-white border border-gray-200 rounded-xl p-4 shadow-sm w-48 h-36">
+              <div className="w-10 h-10 bg-yellow-200 text-yellow-700 rounded-lg flex items-center justify-center text-sm">
+                <PromiseIcon type = {p.type} />
               </div>
-              <div className="promiseTitle">{p.title}</div>
-              <div className="promiseSub muted">{p.sub}</div>
+              <div className="flex flex-col items-center text-center justify-center flex-1">
+              <div className="font-semibold text-sm">{p.title}</div>
+              <div className="text-xs text-gray-500 mt-1">{p.sub}</div></div>
             </div>
+            
           ))}
+        </div>
         </div>
       </section>
 
