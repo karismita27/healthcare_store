@@ -143,7 +143,7 @@ export default function Home() {
   return (
     <div className="page home">
       {/* HERO */}
-      <section className="hero">
+      <section className="hero card">
         <div className="hero__bg" aria-hidden="true" />
         <div className="hero__content">
           <h1 className="hero__title">Trusted Healthcare Machines for Everyday Care</h1>
