@@ -749,14 +749,15 @@
 
 @media (max-width: 768px) {
   .hero {
-    min-height: auto;
+    min-height: 420px;
     padding-top:60px;   /* space for fixed navbar */
     padding-bottom: 40px;
   }
 
   .hero_content {
     width: 100%;
-    height: 200px;
+    padding: 24px 16px;
+    text-align: left;
   }
 
   .hero__title{
