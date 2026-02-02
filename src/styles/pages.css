@@ -1,9 +1,7 @@
 .hero{
   padding: 0;
-  border-radius: 0;
   min-height: 468px;
-  height: auto;
-  position: inherit
+  position: relative;
 
 
 }
@@ -752,8 +750,7 @@
   .hero {
     min-height: auto;
     height: auto;
-    padding-top:60px;   /* space for fixed navbar */
-    padding-bottom: 32px;
+    padding-top:60px 0 40px;   /* space for fixed navbar */
     overflow: visible;
   }
 
