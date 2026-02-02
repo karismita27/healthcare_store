@@ -4,6 +4,10 @@
   flex-direction:column;
 }
 .page{display:flex; flex-direction:column; gap:18px; margin-top: 150px;}
+.page.home{
+  margin-top: 0;
+  padding-top: 0;
+}
 .section{display:flex; flex-direction:column; gap:12px; margin-bottom: 15px; ;}
 .section__head{display:flex; align-items:baseline; justify-content:space-between; gap:10px}
 .section__title{
