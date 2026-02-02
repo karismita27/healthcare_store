@@ -752,10 +752,10 @@
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 520px;
+    min-height: 620px;
     height: auto;
-    padding-top:180px;   /* space for fixed navbar */
-    padding-bottom: 60px;
+    padding-top:200px;   /* space for fixed navbar */
+    padding-bottom: 80px;
     overflow: visible;
   }
 
