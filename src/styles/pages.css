@@ -778,17 +778,18 @@
 
 @media(max-width: 767px){
   .supportIntro{
-    height: auto;
     overflow: visible;
     padding: 12px;
   }
   .supportImage{
     width: 100%;
-    height: 100px;
+    height: 120px;
+    margin: 12px 0;
   }
   .supportImage img{
     width: 100%;
     height: 100%;
     object-fit: contain;
+    display: block;
   }
 }
